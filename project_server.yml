@@ -57,7 +57,6 @@ Resources:
           sudo apt-get install -y nginx
           sudo systemctl start nginx
       ImageId: ami-0729e439b6769d6ab
-      KeyName: Madakey
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: t2.medium
