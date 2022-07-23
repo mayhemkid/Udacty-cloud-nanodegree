@@ -53,20 +53,11 @@ Resources:
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
-          # Install docker
-          apt-get update
-          apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-          add-apt-repository \
-          "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-          $(lsb_release -cs) \
-          stable"
-          apt-get update
-          apt-get install -y docker-ce
-          usermod -aG docker ubuntu
-          $ docker run -p 80:8080 tomcat:8.0
-      ImageId: ami-0cfa91bdbc3be780c
-      KeyName: aws
+          sudo apt-get update
+          sudo apt-get install -y nginx
+          sudo systemctl start nginx
+      ImageId: ami-0729e439b6769d6ab
+      KeyName: Madakey
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: t2.medium
@@ -134,7 +125,7 @@ Resources:
     Type: AWS::IAM::InstanceProfile
     Properties: 
       Roles:
-        - UdacityS3ReadOnlyEC2
+        - UdacityS3Iam
 
 Outputs: 
   
